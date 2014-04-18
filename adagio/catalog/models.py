@@ -1,8 +1,10 @@
-from django.conf import settings
 from django.db import models
 
 
 class Artist(models.Model):
+
+    class Meta:
+        ordering = ['name']
 
     # The name of the artist.
     name = models.CharField(max_length=128)
@@ -15,6 +17,9 @@ class Artist(models.Model):
 
 
 class Album(models.Model):
+
+    class Meta:
+        ordering = ['year', 'name']
 
     # The artist who's album this is.
     artist = models.ForeignKey('catalog.Artist', related_name='albums')
@@ -36,6 +41,9 @@ class Album(models.Model):
 
 
 class Track(models.Model):
+
+    class Meta:
+        ordering = ['disc_number', 'number']
 
     # The album this track belongs to.
     album = models.ForeignKey('catalog.Album', related_name='tracks')
