@@ -1,4 +1,3 @@
-from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
 from . import models
@@ -27,6 +26,7 @@ class AlbumSerializer(serializers.HyperlinkedModelSerializer):
     # Provide a list of links to all tracks for a given album.
     tracks = serializers.HyperlinkedRelatedField(view_name='track-detail',
                                                  many=True)
+    #tracks = TrackSerializer(many=True)
 
     class Meta:
         model = models.Album
@@ -36,9 +36,11 @@ class ArtistSerializer(serializers.HyperlinkedModelSerializer):
     '''
     Show all the fields on an Artist
     '''
-    # Provide a list of links to all albums associated with a particular artist.
+    # Provide a list of links to all albums associated with a particular
+    # artist.
     albums = serializers.HyperlinkedRelatedField(view_name='album-detail',
                                                  many=True)
+    #albums = AlbumSerializer(many=True)
 
     class Meta:
         model = models.Artist

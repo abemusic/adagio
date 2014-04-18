@@ -1,8 +1,6 @@
-from django.contrib.auth import get_user_model
 from rest_framework.exceptions import ParseError
 from rest_framework.parsers import JSONParser
 from rest_framework.response import Response
-from rest_framework.views import APIView
 from rest_framework.generics import (
     SingleObjectAPIView,
     ListCreateAPIView,
@@ -100,7 +98,8 @@ class CatalogImport(SingleObjectAPIView):
 
     serializer_class = serializers.ImportSerializer
 
-    def post(self, request, *args, **kwargs):
+    # Ignore code complexity issues
+    def post(self, request, *args, **kwargs):  # NOQA
         if not request.FILES or 'file_upload' not in request.FILES:
             raise ParseError('file_upload field required.')
         fp = request.FILES['file_upload']
@@ -133,7 +132,7 @@ class CatalogImport(SingleObjectAPIView):
                     time=item['Total Time']
                 )
                 if created:
-                   track_count += 1
+                    track_count += 1
 
                 genre = item.get('Genre', '')
                 if genre or album_obj.genre is None:
@@ -144,7 +143,7 @@ class CatalogImport(SingleObjectAPIView):
                     album_obj.year = year
                 album_obj.save()
 
-        except Exception, e:
+        except Exception:
             raise
 
         # load it into the database
