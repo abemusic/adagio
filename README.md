@@ -9,6 +9,7 @@ your RESTful APIs.
 
 # Requirements
 
+* Python 2.7
 * virtualenv-wrapper (use brew or your favorite package manager)
 * a handful of python packages
 
