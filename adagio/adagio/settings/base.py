@@ -256,5 +256,9 @@ SOUTH_TESTS_MIGRATE = False
 REST_FRAMEWORK = {
     'PAGINATE_BY': 10,
     'PAGINATE_BY_PARAM': 'page_size',
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.UnicodeJSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    )
 }
 ########## END REST FRAMEWORK CONFIGURATION
