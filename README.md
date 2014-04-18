@@ -24,7 +24,7 @@ git clone https://github.com/abemusic/adagio adagio_root
 cd adagio_root
 
 # Install requirements
-pip install -r requiremenst/local.txt
+pip install -r requirements/local.txt
 
 # Move into the Django project's root
 cd adagio
